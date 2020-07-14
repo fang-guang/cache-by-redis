@@ -2,8 +2,17 @@ const _ = require('lodash');
 const Redis = require('ioredis');
 
 class RedisCacher {
-  constructor(payload) {
-    const opt = _.defaultsDeep(payload, {
+  /**
+  * @param {object} options  数据库配置
+  * @param {number} options.prefix 设置缓存的前缀
+  * @param {number} options.expire 设置的失效时间, 单位s
+  * @param {object} options.reids redis配置
+  * @param {String} options.reids.host redis host配置
+  * @param {String} options.reids.port redis port配置
+  * @param {String} options.reids.db redis 存储db配置
+  */
+  constructor(options) {
+    const opt = _.defaultsDeep(options, {
       redis: {
         host: '127.0.0.1',
         port: '6379',
@@ -11,7 +20,6 @@ class RedisCacher {
       },
       prefix: 'cache_',
       expire: 5,
-      raw: false,
     });
     this.client = new Redis(opt.redis);
     this.prefix = opt.prefix;
@@ -21,9 +29,7 @@ class RedisCacher {
   /**
      * @param {object} payload
      * @param {string} payload.key 要查找的key
-     * @param {number} payload.expire 失效时间, 单位s
      * @param {function} payload.executor 如果未击中，要执行的方法
-     * @param {boolean} [payload.raw=false] 是否不用 decode/encode 数据
      * @return {Promise.<Object>} 缓存中数据(击中) 或executor返回数据(未击中)
      */
   get(payload) {

@@ -1,6 +1,6 @@
 {
   "name": "cache-redis-fg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple interface cacher based on ioredis.",
   "main": "./src/cache.js",
   "scripts": {

@@ -19,9 +19,7 @@ npm i -S cache-redis-fg
 -   [get](#get)
 -   [delete](#delete)
 
-## constructor
-
-**Parameters**
+### Parameters
 __1. 参数opt, redis配置__ 
   * @param {object} opt  数据库配置
   * @param {number} opt.prefix 设置缓存的前缀
@@ -30,12 +28,12 @@ __1. 参数opt, redis配置__
   * @param {String} opt.reids.host redis host配置
   * @param {String} opt.reids.port redis port配置
   * @param {String} opt.reids.db redis 存储db配置
-        new Cacher(opt);
+      
+  new Cache(opt);
 
 __2. 参数payload, 缓存参数__ 
   * @param {object} payload
   * @param {string} payload.key 要查找的key
-  * @param {number} payload.expire 失效时间, 单位s
   * @param {function} payload.executor 如果未击中，要执行的
 
   返回
@@ -72,12 +70,12 @@ const getShopes = (type) => {
 ```
 #### support deafeat cache in redis 12
 ```
-const cacher = new Cacher();
+const cache = new Cacher();
   const payload = {
     key: 'getShopes',
     executor: getShopes.bind(null, 0),
   };
-await cacher.get(payload);
+await cache.get(payload);
 ```
 #### support redis config
 ```
@@ -88,27 +86,27 @@ const opt1 = {
     prefix: 'testCache_',
     expire: 100,
   };
-const CacherP = new Cacher(opt1);
+const cache = new Cacher(opt1);
   const payload = {
     key: 'getShopes',
     executor: getShopes.bind(null, 0),
   };
-await CacherP.get(payload);
+await cache.get(payload);
 ```
 #### suppose complex object
 ```
-  const CacherP = new Cacher();
+  const cache = new Cacher();
   const payload = {
     key: 'getShopes',
     executor: getShopes.bind(null, 3),
   };
-  await CacherP.get(payload);
+  await cache.get(payload);
 ```
 ###  delete
 suppose remove the key in redis
 ```
-const CacherP = new Cacher();
-CacherP.delete(key);
+  const cache = new Cache();
+  cache.delete(key);
 ```
 
 ### attention 
