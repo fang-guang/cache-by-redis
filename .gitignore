@@ -2,6 +2,9 @@
 logs
 *.log
 
+# rm DS_Store
+.DS_Store
+
 # Runtime data
 pids
 *.pid
