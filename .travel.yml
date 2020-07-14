@@ -1,0 +1,37 @@
+# 指定运行环境
+language: node_js
+
+# 指定nodejs版本，可以指定多个
+node_js:
+    - "12.13.0"
+
+# 需要的数据库
+services: 
+    - redis
+
+# 执行脚本前 install: npm i 也能达到一样的效果
+before_script: 
+    - npm i
+
+# 运行的脚本命令
+script:
+    - npm run lint
+    - npm run test
+
+# 设置邮件通知
+notifications:
+    email:
+        recipients:
+            - fangguang_emaill@163.com
+        on_success: always # default: change
+        on_failure: always # default: always
+
+# 上传成功后 
+after_success:
+    - npm run nyc:cov
+
+# 指定分支，只有指定的分支提交时才会运行脚本
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/

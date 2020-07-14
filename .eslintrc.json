@@ -1,0 +1,27 @@
+{
+    // 配置文件中指定环境
+    "env": {
+      // CommonJS全局变量和CommonJS作用域（将其用于使用Browserify / WebPack的仅浏览器代码）
+      "commonjs": true,
+      // 启用除模块以外的所有ECMAScript 6功能（这会自动将ecmaVersion解析器选项设置为6
+      "es6": true,
+      // Node.js全局变量和Node.js作用域。
+      "node": true
+    },
+    "extends": ["airbnb-base"],
+    // 将每个全局变量名设置为true以允许覆盖变量，或设置为false以不允许覆盖变量。
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    // js支持的语言选项
+    "parserOptions": {
+      // ecmaVersion-设置为3、5（默认），6、7、8、9、10或11，以指定要使用的ECMAScript语法的版本。
+      // 您还可以将年份设置为2015（等于6），2016（等于7），2017（等于8），2018（等于9），2019（等于10）或2020（等于11）以使用年份基于命名。
+      "ecmaVersion": 2018
+    },
+    "rules": {
+      // 不允许给函数参数再赋值
+      "no-param-reassign": "off"
+    }
+  }
