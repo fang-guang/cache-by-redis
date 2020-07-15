@@ -1,12 +1,13 @@
 {
   "name": "cache-redis-fg",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A simple interface cacher based on ioredis.",
   "main": "./src/cache.js",
   "scripts": {
     "lint": "eslint ./src/*.js",
-    "nyc:cov": "nyc ava ./test/cacher.test.js -v && nyc report --reporter=html",
-    "test": "ava ./test/cacher.test.js"
+    "cov": "node_modules/.bin/nyc report --reporter=text-summary",
+    "nyc:cov": "node_modules/.bin/nyc ava ./test/*.test.js && nyc report --reporter=html",
+    "test": "ava ./test/*.test.js"
   },
 
   "repository": {
